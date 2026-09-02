@@ -9,7 +9,7 @@ const books: Book[] = [
   { id: "2", title: "City of Glass", author: "Paul Auster" },
 ];
 
-export const resolvers = {
+export const bookResolvers = {
   Query: {
     books: (): Book[] => books,
 

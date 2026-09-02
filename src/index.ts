@@ -1,16 +1,30 @@
 import { ApolloServer } from "@apollo/server";
 import  {  startStandaloneServer  }  from  '@apollo/server/standalone' ;
 
+import { db } from "./database/db";
+
+
 import  typeDefs from "./schema/typeDefs";
-import { resolvers } from "./schema/resolvers";
+import { bookResolvers,  categoryResolvers} from "./schema/resolvers";
+
+const resolvers = {
+  Query: {
+    ...bookResolvers.Query,
+    ...categoryResolvers.Query,
+  },
+};
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 async function startServer() {
-  const { url } = await startStandaloneServer(server);
+  const { url } = await startStandaloneServer(server, {
+  context: async () => ({
+    db,
+  }),
+});
 
   console.log(`🚀 Server ready at ${url}`);
 }
