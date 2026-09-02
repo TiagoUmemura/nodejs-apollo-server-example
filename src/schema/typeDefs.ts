@@ -9,6 +9,7 @@ const typeDefs = `#graphql
     books: [Book!]!
     book(id: ID!): Book
     category(id: ID!): Category
+    productsByCategory(categoryId: ID!, filter: ProductsFilterInput): [Product]
   }
 
   type Category {

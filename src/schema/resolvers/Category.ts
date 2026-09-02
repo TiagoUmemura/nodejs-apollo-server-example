@@ -12,16 +12,15 @@ export const categoryResolvers = {
     ) => {
       return db.categories.find((cat: { id: string }) => cat.id === id)
     },
-  },
 
-  Category: {
-    products: (
-      parent: { id: string },
-      { filter }: { filter?: ProductsFilterInput },
+    //_parent is not used, but needed for parameter position
+    productsByCategory: (
+      _parent: unknown,
+      { categoryId, filter }: { categoryId: string; filter?: ProductsFilterInput },
       { db }: { db: any }
     ) => {
       let products = db.products.filter(
-        (product: { categoryId: string }) => product.categoryId === parent.id
+        (product: { categoryId: string }) => product.categoryId === categoryId
       );
 
       if (filter) {
@@ -46,8 +45,8 @@ export const categoryResolvers = {
           });
         }
       }
-
       return products;
+
     },
   },
 };
