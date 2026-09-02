@@ -12,6 +12,10 @@ const typeDefs = `#graphql
     productsByCategory(categoryId: ID!, filter: ProductsFilterInput): [Product]
   }
 
+  type Mutation {
+    updateCategory(id: ID!, input: CategoryInput): Category
+  }
+
   type Category {
     id: ID!
     name: String!
@@ -41,6 +45,10 @@ const typeDefs = `#graphql
   input ProductsFilterInput {
     onSale: Boolean
     avgRating: Int
+  }
+
+  input CategoryInput {
+    name: String!
   }
 `;
 

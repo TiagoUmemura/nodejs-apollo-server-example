@@ -12,6 +12,9 @@ const resolvers = {
     ...bookResolvers.Query,
     ...categoryResolvers.Query,
   },
+  Mutation: {
+    ...categoryResolvers.Mutation,
+  }
 };
 
 const server = new ApolloServer({

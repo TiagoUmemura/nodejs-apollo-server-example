@@ -3,6 +3,10 @@ type ProductsFilterInput = {
   avgRating?: number;
 };
 
+type CategoryInput = {
+    name: String
+}
+
 export const categoryResolvers = {
   Query: {
     category: (
@@ -49,4 +53,18 @@ export const categoryResolvers = {
 
     },
   },
+  Mutation: {
+    updateCategory: (
+        _parent: unknown, 
+        { id, input }: { id: string; input?: CategoryInput }, 
+        { db }:{ db: any }) => {
+    const index = db.categories.findIndex((category: { id: string }) => category.id === id);
+    if (index === -1) return null;
+    db.categories[index] = {
+      ...db.categories[index],
+      ...input,
+    };
+    return db.categories[index];
+  },
+  }
 };
