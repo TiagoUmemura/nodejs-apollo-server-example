@@ -10,6 +10,7 @@ const typeDefs = `#graphql
     book(id: ID!): Book
     category(id: ID!): Category
     productsByCategory(categoryId: ID!, filter: ProductsFilterInput): [Product]
+    reviews: [Review]
   }
 
   type Mutation {

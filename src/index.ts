@@ -5,12 +5,13 @@ import { db } from "./database/db";
 
 
 import  typeDefs from "./schema/typeDefs";
-import { bookResolvers,  categoryResolvers} from "./schema/resolvers";
+import { bookResolvers,  categoryResolvers, reviewResolvers} from "./schema/resolvers";
 
 const resolvers = {
   Query: {
     ...bookResolvers.Query,
     ...categoryResolvers.Query,
+    ...reviewResolvers.Query
   },
   Mutation: {
     ...categoryResolvers.Mutation,
