@@ -1,6 +1,18 @@
-\*\* About
+# About
 
-Simple nodejs with Apollo. Contains book endpoint example:
+Simple nodejs with Apollo. Contains book endpoint example and endpoint that get data from Postgres DB container
+
+## How to run
+
+- npm install
+- In the folder src/pg-db run docker-compose up -d (start postgres container, port 5432)
+  - Folder src/pg-db/init contains a seed sql that will run with docker-compose command
+- npm run start:dev
+
+## Endpoint examples
+
+- Users endpoint gets the users list from Postgres.
+- All other endpoints is using dummy data from a ts file. (src/database/db.ts)
 
 ```
 localhost:4000/
@@ -48,6 +60,17 @@ mutation UpdateCategory {
     ) {
         id
         name
+    }
+}
+
+POSTGRES Query
+
+query Users {
+    users {
+        id
+        name
+        email
+        createdAt
     }
 }
 
