@@ -11,6 +11,8 @@ const typeDefs = `#graphql
     category(id: ID!): Category
     productsByCategory(categoryId: ID!, filter: ProductsFilterInput): [Product]
     reviews: [Review]
+    users: [User!]!
+    user(id: ID!): User
   }
 
   type Mutation {
@@ -50,6 +52,13 @@ const typeDefs = `#graphql
 
   input CategoryInput {
     name: String!
+  }
+
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    createdAt: String
   }
 `;
 
